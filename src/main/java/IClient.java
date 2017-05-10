@@ -1,5 +1,6 @@
 import feign.QueryMap;
 import feign.RequestLine;
+import org.json.simple.JSONObject;
 
 import java.util.Map;
 
@@ -11,7 +12,7 @@ public interface IClient {
     String getUsers();
 
     @RequestLine("POST /api/call")
-    String makeCall(@QueryMap Map<String, Object> queryMap);
+    JSONObject makeCall(@QueryMap Map<String, Object> queryMap);
 
 }
     

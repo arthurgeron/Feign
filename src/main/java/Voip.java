@@ -1,6 +1,9 @@
 /**
  * Created by arthurgeron on 09/05/17.
  */
+
+import org.json.simple.JSONObject;
+
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -22,11 +25,13 @@ public class Voip {
 
     @POST
     @Path("/call")
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response getMsg(@DefaultValue("") @QueryParam( value = "from") final String from,
                            @DefaultValue("") @QueryParam( value = "to") final String to
     ) {
-        String output = "From: " + from + ". To: " + to + ".\n";
-        return Response.status(200).entity(output).build();
+        JSONObject json = new JSONObject();
+        json.put("from", from);
+        json.put("to", to);
+        return Response.status(200).entity(json).build();
     }
 }
