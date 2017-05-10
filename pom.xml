@@ -71,14 +71,24 @@
             <version>1.19.3</version>
         </dependency>
         <dependency>
-            <groupId>com.netflix.ribbon</groupId>
-            <artifactId>ribbon</artifactId>
-            <version>2.0-RC1</version>
-        </dependency>
-        <dependency>
             <groupId>com.googlecode.json-simple</groupId>
             <artifactId>json-simple</artifactId>
             <version>1.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.netflix.archaius</groupId>
+            <artifactId>archaius-core</artifactId>
+            <version>2.0.0-rc.7</version>
+        </dependency>
+        <dependency>
+            <groupId>com.netflix.ribbon</groupId>
+            <artifactId>ribbon-core</artifactId>
+            <version>2.2.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.netflix.ribbon</groupId>
+            <artifactId>ribbon-loadbalancer</artifactId>
+            <version>2.2.2</version>
         </dependency>
     </dependencies>
 

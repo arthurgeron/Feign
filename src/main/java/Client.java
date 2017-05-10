@@ -1,11 +1,9 @@
 import feign.Feign;
-import feign.Logger;
-import feign.okhttp.OkHttpClient;
-import feign.slf4j.Slf4jLogger;
 import org.json.simple.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+
 
 /**
  * Created by arthurgeron on 10/05/17.
@@ -13,10 +11,9 @@ import java.util.Map;
 public class Client {
 
     IClient voipClient = Feign.builder()
-            .client(new OkHttpClient())
-            .logger(new Slf4jLogger(IClient.class))
-            .logLevel(Logger.Level.FULL)
-            .target(IClient.class, "http://localhost:8080");
+            .client(new RibbonClient())
+            .target(IClient.class, "http://ribbonclient");
+
 
     public String getUsers() {
         String response = voipClient.getUsers();
