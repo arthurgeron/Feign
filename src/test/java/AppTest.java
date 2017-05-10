@@ -15,14 +15,13 @@ import java.util.Map;
 /**
  * Created by arthurgeron on 09/05/17.
  */
-public class VoipTest {
+public class AppTest {
 
     private IClient voipClient;
     private Thread thread;
 
-    public VoipTest() {
+    public AppTest() {
         Injector injector = Guice.createInjector(new AppModule());
-
         App  app = injector.getInstance(App.class);
         thread = new Thread(app);
         thread.start();
@@ -36,12 +35,8 @@ public class VoipTest {
 
     @Test
     public void testGetUsers() throws Exception {
-        voipClient = Feign.builder()
-                .client(new OkHttpClient())
-                .logger(new Slf4jLogger(IClient.class))
-                .logLevel(Logger.Level.FULL)
-                .target(IClient.class, "http://localhost:8080");
-        String response = voipClient.getUsers();
+        Client client = new Client();
+        String response = client.getUsers();
         Assert.assertTrue(response != "");
         System.out.println(response);
 
@@ -50,15 +45,8 @@ public class VoipTest {
 
     @Test
     public void testMakeCall() throws Exception {
-        voipClient = Feign.builder()
-                .client(new OkHttpClient())
-                .logger(new Slf4jLogger(IClient.class))
-                .logLevel(Logger.Level.FULL)
-                .target(IClient.class, "http://localhost:8080");
-        Map<String, Object> calls = new HashMap<String, Object>();
-        calls.put("from", "Noreg");
-        calls.put("to", "Anon2");
-        String response = voipClient.makeCall(calls);
+        Client client = new Client();
+        String response = client.makeCall() ;
         Assert.assertTrue(response != "");
         System.out.println(response);
     }
