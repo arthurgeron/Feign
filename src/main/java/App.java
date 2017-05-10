@@ -2,9 +2,6 @@
  * Created by arthurgeron on 09/05/17.
  */
 
-import com.google.inject.Guice;
-import com.google.inject.Inject;
-import com.google.inject.Injector;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
@@ -36,9 +33,8 @@ public class App implements Runnable {
 
     private void newServerInstance() {
 
-        ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
-        context.setContextPath("/");
         jettyServer = new Server(8080);
+        ServletContextHandler context = new ServletContextHandler(jettyServer, "/*");
         jettyServer.setHandler(context);
 
         ServletHolder jerseyServlet = context.addServlet(
