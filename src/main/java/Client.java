@@ -22,13 +22,11 @@ public class Client {
         return response;
     }
 
-    public String makeCall() {
+    public JSONObject makeCall() {
         Map<String, Object> calls = new HashMap<String, Object>();
         calls.put("from", "Noreg");
         calls.put("to", "Anon2");
-        String response = voipClient.makeCall(calls);
-        JSONParser parser = new JSONParser();
-//        JSONObject json = (JSONObject) parser.parse(response);
+        JSONObject response = voipClient.makeCall(calls);
         return response;
     }
 

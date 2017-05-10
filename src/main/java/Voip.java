@@ -25,13 +25,13 @@ public class Voip {
 
     @POST
     @Path("/call")
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response getMsg(@DefaultValue("") @QueryParam( value = "from") final String from,
                            @DefaultValue("") @QueryParam( value = "to") final String to
     ) {
         JSONObject json = new JSONObject();
         json.put("from", from);
         json.put("to", to);
-        return Response.status(200).entity(json.toString()).build();
+        return Response.status(200).entity(json).build();
     }
 }

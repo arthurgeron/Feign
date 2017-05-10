@@ -1,15 +1,9 @@
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import feign.Feign;
-import feign.Logger;
-import feign.okhttp.OkHttpClient;
-import feign.slf4j.Slf4jLogger;
+import org.json.simple.JSONObject;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.util.HashMap;
-import java.util.Map;
 
 
 /**
@@ -46,8 +40,8 @@ public class AppTest {
     @Test
     public void testMakeCall() throws Exception {
         Client client = new Client();
-        String response = client.makeCall() ;
-        Assert.assertTrue(response != "");
+        JSONObject response = client.makeCall() ;
+        Assert.assertTrue(response != null);
         System.out.println(response);
     }
 

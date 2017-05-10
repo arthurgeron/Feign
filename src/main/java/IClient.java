@@ -12,7 +12,7 @@ public interface IClient {
     String getUsers();
 
     @RequestLine("POST /api/call")
-    String makeCall(@QueryMap Map<String, Object> queryMap);
+    JSONObject makeCall(@QueryMap Map<String, Object> queryMap);
 
 }
     
