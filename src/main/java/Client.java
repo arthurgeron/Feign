@@ -1,5 +1,7 @@
 import feign.Feign;
+import feign.ribbon.RibbonClient;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,8 +26,10 @@ public class Client {
         Map<String, Object> calls = new HashMap<String, Object>();
         calls.put("from", "Noreg");
         calls.put("to", "Anon2");
-        JSONObject response = voipClient.makeCall(calls);
-        return response.toString();
+        String response = voipClient.makeCall(calls);
+        JSONParser parser = new JSONParser();
+//        JSONObject json = (JSONObject) parser.parse(response);
+        return response;
     }
 
 }

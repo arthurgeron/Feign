@@ -12,15 +12,8 @@ import org.eclipse.jetty.servlet.ServletHolder;
 public class App implements Runnable {
     private Server jettyServer;
 
-    @Inject
-    public App(Server server) {
-        this.jettyServer = server;
-    }
-
     public static void main(String[] args) throws Exception {
-        Injector injector = Guice.createInjector(new AppModule());
-
-        App  app = injector.getInstance(App.class);
+        App app = new App();
 
         app.jettyServer = app.getServerInstance();
         try {
@@ -45,7 +38,6 @@ public class App implements Runnable {
 
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
         context.setContextPath("/");
-
         jettyServer = new Server(8080);
         jettyServer.setHandler(context);
 
