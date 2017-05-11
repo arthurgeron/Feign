@@ -1,7 +1,7 @@
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import feign.Feign;
 import feign.ribbon.RibbonClient;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,12 +22,12 @@ public class Client {
         return response;
     }
 
-    public JSONObject makeCall() {
+    public JsonObject makeCall() {
         Map<String, Object> calls = new HashMap<String, Object>();
         calls.put("from", "Noreg");
         calls.put("to", "Anon2");
-        JSONObject response = voipClient.makeCall(calls);
-        return response;
+        String result = voipClient.makeCall(calls);
+        return new JsonParser().parse(result).getAsJsonObject();
     }
 
 }

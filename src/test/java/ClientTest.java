@@ -1,6 +1,6 @@
-import org.json.simple.JSONObject;
-import org.junit.Test;
+import com.google.gson.JsonObject;
 import org.junit.Assert;
+import org.junit.Test;
 
 /**
  * Created by arthurgeron on 10/05/17.
@@ -17,7 +17,7 @@ public class ClientTest {
     @Test
     public void clientCanMakeCalls() {
         Client client = new Client();
-        JSONObject response = client.makeCall() ;
+        JsonObject response = client.makeCall() ;
         Assert.assertNotNull(response);
     }
 }

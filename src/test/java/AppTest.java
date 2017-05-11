@@ -1,3 +1,4 @@
+import com.google.gson.JsonObject;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import org.json.simple.JSONObject;
@@ -40,9 +41,9 @@ public class AppTest {
     @Test
     public void testMakeCall() throws Exception {
         Client client = new Client();
-        JSONObject response = client.makeCall() ;
-        Assert.assertTrue(response != null);
-        System.out.println(response);
+        JsonObject response = client.makeCall() ;
+        Assert.assertNotNull(response);
+        System.out.println(response.toString());
     }
 
     @After
