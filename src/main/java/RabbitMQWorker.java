@@ -2,20 +2,29 @@
  * Created by arthurgeron on 11/05/17.
  */
 
+import com.google.inject.Guice;
+import com.google.inject.Inject;
+import com.google.inject.Injector;
 import com.rabbitmq.client.*;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
-public class RabbitMQWorker extends AbstractRabbitMQServer {
+public class RabbitMQWorker extends AbstractRabbitMQ {
+
+    private Channel channel;
+
+    @Inject
+    public RabbitMQWorker(RabbitMQAdapter adapter) {
+        this.channel = adapter.channel;
+    }
+
+
 
     public static void main(String[] args) throws IOException, TimeoutException {
-        ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost("localhost");
-        Connection connection = factory.newConnection();
-        Channel channel = connection.createChannel();
-        System.out.println("RabbitMQ-Receiver: Connected to server" );
-
+        Injector injector = Guice.createInjector(new AppModule());
+        RabbitMQWorker worker = injector.getInstance(RabbitMQWorker.class);
+        Channel channel = worker.channel;
         channel.queueDeclare(QueueName, false, false, false, null);
         Consumer consumer = new DefaultConsumer(channel) {
             @Override

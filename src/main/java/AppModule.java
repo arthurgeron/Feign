@@ -7,5 +7,6 @@ public class AppModule extends AbstractModule{
 
     @Override
     protected void configure() {
+        bind(RabbitMQAdapter.class);
     }
 }

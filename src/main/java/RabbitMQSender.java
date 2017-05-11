@@ -3,37 +3,28 @@
  * Summary: Implements RabbitMQ to send messages to a channel, workers watching that channel will grab
  * the message and do something with it.
  */
+import com.google.inject.Guice;
+import com.google.inject.Inject;
+import com.google.inject.Injector;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
-import com.rabbitmq.client.ConnectionFactory;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
-public class RabbitMQSender extends  AbstractRabbitMQ{
+public class RabbitMQSender{
 
-    private Connection connection;
-    private Channel channel;
-
-    private void OpenConnection() throws IOException, TimeoutException {
-        ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost("localhost");
-        connection = factory.newConnection();
-        channel = connection.createChannel();
-        System.out.println("RabbitMQ:Connection to server opened");
+    RabbitMQAdapter adapter;
+    @Inject
+    public RabbitMQSender(RabbitMQAdapter adapter) {
+        this.adapter = adapter;
     }
 
-    public void SendMessage(String message) throws  IOException, TimeoutException{
-        OpenConnection();
-        channel.queueDeclare(QueueName, false, false, false, null);
-        channel.basicPublish("", QueueName, null, message.getBytes());
-        System.out.println("[X] Sent");
-        CloseConnection();
+    public void SendMessage(String message) throws IOException, TimeoutException {
+        adapter.SendMessage(message);
     }
 
-    private void CloseConnection() throws  IOException, TimeoutException {
-        channel.close();
-        connection.close();
-        System.out.println("RabbitMQ-Sender:Connection to server closed");
+    public void CloseConnect() throws TimeoutException, IOException {
+        adapter.CloseConnection();
     }
 }
