@@ -12,7 +12,7 @@ public class RabbitMQTest {
     private Thread thread;
 
     private void StartRabbitReceiver() {
-            thread = new Thread(new RabbitMQReceiver());
+            thread = new Thread(new RabbitMQWorker());
         thread.start();
     }
 

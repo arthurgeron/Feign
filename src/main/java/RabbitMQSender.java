@@ -1,6 +1,7 @@
 /**
  * Created by arthurgeron on 11/05/17.
- * Summary: Implements RabbitMQ to transport every message sent.
+ * Summary: Implements RabbitMQ to send messages to a channel, workers watching that channel will grab
+ * the message and do something with it.
  */
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;

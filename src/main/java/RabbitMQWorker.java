@@ -7,7 +7,7 @@ import com.rabbitmq.client.*;
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
-public class RabbitMQReceiver extends AbstractRabbitMQServer {
+public class RabbitMQWorker extends AbstractRabbitMQServer {
 
     public static void main(String[] args) throws IOException, TimeoutException {
         ConnectionFactory factory = new ConnectionFactory();
