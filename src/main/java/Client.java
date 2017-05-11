@@ -4,6 +4,7 @@ import com.netflix.config.ConfigurationManager;
 import feign.Feign;
 import feign.ribbon.RibbonClient;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,10 +14,19 @@ import java.util.Map;
  */
 public class Client {
 
-    IClient voipClient = Feign.builder()
-            .client(new RibbonClient())
-            .target(IClient.class, "http://voipClient");
+    public Client() {
+        try {
+            ConfigurationManager.loadPropertiesFromResources("voipClient.properties");
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        voipClient = Feign.builder()
+                .client(new RibbonClient())
+                .target(IClient.class, "http://voipClient");
+    }
 
+    IClient voipClient;
 
     public String getUsers() {
         String response = voipClient.getUsers();
