@@ -2,7 +2,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.netflix.config.ConfigurationManager;
 import feign.Feign;
-import feign.ribbon.LBClientFactory;
 import feign.ribbon.RibbonClient;
 
 import java.util.HashMap;
@@ -14,14 +13,9 @@ import java.util.Map;
  */
 public class Client {
 
-    public Client() {
-        ConfigurationManager.loadPropertiesFromResources("voipClient.properties");
-        //        ClientFactory.getNamedClient("sample-client");
-
-    }
     IClient voipClient = Feign.builder()
-            .client(new RibbonClient.Builder().lbClientFactory())
-            .target(IClient.class, "http://ribbonclient");
+            .client(new RibbonClient())
+            .target(IClient.class, "http://voipClient");
 
 
     public String getUsers() {
