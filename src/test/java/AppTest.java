@@ -1,7 +1,6 @@
 import com.google.gson.JsonObject;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import org.json.simple.JSONObject;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;

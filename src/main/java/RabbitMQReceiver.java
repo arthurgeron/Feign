@@ -14,6 +14,7 @@ public class RabbitMQReceiver extends AbstractRabbitMQServer {
         factory.setHost("localhost");
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
+        System.out.println("RabbitMQ-Receiver: Connected to server" );
 
         channel.queueDeclare(QueueName, false, false, false, null);
         Consumer consumer = new DefaultConsumer(channel) {
@@ -25,6 +26,7 @@ public class RabbitMQReceiver extends AbstractRabbitMQServer {
                 System.out.println(" [x] Received '" + message + "'");
             }
         };
+        System.out.println("RabbitMQ-Receiver: Started to consume queue: " + QueueName );
         channel.basicConsume(QueueName, true, consumer);
     }
 

@@ -33,6 +33,6 @@ public class RabbitMQSender extends  AbstractRabbitMQ{
     private void CloseConnection() throws  IOException, TimeoutException {
         channel.close();
         connection.close();
-        System.out.println("RabbitMQ:Connection to server closed");
+        System.out.println("RabbitMQ-Sender:Connection to server closed");
     }
 }

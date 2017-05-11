@@ -24,7 +24,9 @@ public class RabbitMQTest {
     public void SenderCanSendMessages() throws IOException,TimeoutException {
         StartRabbitReceiver();
         RabbitMQSender sender = new RabbitMQSender();
-        sender.SendMessage("Test Message");
+        for(int i = 0; i < 100; i ++)
+            sender.SendMessage("Test Message" + i);
+
     }
 
     @After
