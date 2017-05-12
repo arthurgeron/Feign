@@ -14,15 +14,17 @@ public class RabbitMQTest {
     private Thread thread;
 
     private void StartRabbitReceiver() {
-        Injector injector = Guice.createInjector(new AppModule());
-        RabbitMQWorker worker = injector.getInstance(RabbitMQWorker.class);
+            Injector injector = Guice.createInjector(new AppModule());
+            RabbitMQWorker worker = injector.getInstance(RabbitMQWorker.class);
             thread = new Thread(worker);
-        thread.start();
+            thread.start();
+
     }
 
     @Test
     public void ReceiverCanStart() throws IOException,TimeoutException{
         StartRabbitReceiver();
+        killThread();
     }
     @Test
     public void SenderCanSendMessages() throws IOException,TimeoutException {
@@ -33,7 +35,6 @@ public class RabbitMQTest {
 
     }
 
-    @After
     public void killThread() {
         thread.interrupt();
     }
