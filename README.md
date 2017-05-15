@@ -22,7 +22,7 @@ Jersey
  Classes: RabbitMQ*
  To Test: Run main method in RabbitMQWorker, then run RabbitMQTest class
 
- Location of `main` methods
+ Location of main methods
  ---
 
  Packages needed: `oracle-java8-installer, maven, rabbitmq-server`
