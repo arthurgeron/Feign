@@ -25,7 +25,7 @@ public class Voip {
 
     @POST
     @Path("/call")
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response getMsg(@DefaultValue("") @QueryParam( value = "from") final String from,
                            @DefaultValue("") @QueryParam( value = "to") final String to
     ) {
