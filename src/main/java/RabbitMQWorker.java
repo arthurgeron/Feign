@@ -22,7 +22,7 @@ public class RabbitMQWorker extends AbstractRabbitMQ {
 
 
     public static void main(String[] args) throws IOException, TimeoutException {
-        Injector injector = Guice.createInjector(new AppModule());
+        Injector injector = Guice.createInjector(new RabbitMQModule());
         RabbitMQWorker worker = injector.getInstance(RabbitMQWorker.class);
         Channel channel = worker.channel;
         channel.queueDeclare(QueueName, false, false, false, null);

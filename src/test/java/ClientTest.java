@@ -18,6 +18,6 @@ public class ClientTest {
     public void clientCanMakeCalls() {
         Client client = new Client();
         JsonObject response = client.makeCall() ;
-        Assert.assertNotNull(response);
+        Assert.assertNotEquals(response.toString(), "");
     }
 }

@@ -1,6 +1,5 @@
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import org.junit.After;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -14,7 +13,7 @@ public class RabbitMQTest {
     private Thread thread;
 
     private void StartRabbitReceiver() {
-            Injector injector = Guice.createInjector(new AppModule());
+            Injector injector = Guice.createInjector(new RabbitMQModule());
             RabbitMQWorker worker = injector.getInstance(RabbitMQWorker.class);
             thread = new Thread(worker);
             thread.start();
@@ -28,7 +27,7 @@ public class RabbitMQTest {
     }
     @Test
     public void SenderCanSendMessages() throws IOException,TimeoutException {
-        Injector injector = Guice.createInjector(new AppModule());
+        Injector injector = Guice.createInjector(new RabbitMQModule());
         RabbitMQSender sender = injector.getInstance(RabbitMQSender.class);
         for(int i = 0; i < 100; i ++)
             sender.SendMessage("Test Message" + i);
